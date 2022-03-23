@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <!-- <link rel="icon" href="favicon.svg" type="image/svg+xml"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="BDC Academy: Visualizing data with D3.js" />
+  <title>BDC Academy: Visualizing data with D3.js</title>
+
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script defer src="js/index.js"></script>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <!-- TODO: 1. Start by defining a svg container element.
+    - Add a 'version' 1.1 and a xml namespace 'xmlns' attribute to the svg element. 
+    - Also, give it a width and height to make it a square of 400 by 400 (pixels)
+    - Give the svg element a class 'my-graphic' and use the style.css to make it a block element and center in on screen with display: block; margin: 0 auto;
+
+    TIP: it is a good idea to see what you have created in the browser after every step (bullet point) and use inspect element to examine the DOM.
+    Note: version and namespace attributes are optional when using a 'inline' SVG like we are doing now.
+    Note2: if you don't supply a width and height to the SVG container, a default of 300 x 150 (pixels) will be used in all browsers. 
+    Note3: Note: In the most basic case one pixel in an SVG document maps to one pixel on the output device (a.k.a. the screen). One user unit equals one screen unit.
+  -->
+
+    <svg class="my-graphic" version="1.1" width="400" height="400" xmlns="http://www.w3.org/2000/SVG">
+      <defs>
+        <clipPath id="cut-off-right">
+          <rect x="50" y="50" width="138" height="300" />
+        </clipPath>
+      </defs>
+
+      <!-- TODO: 2. creating elements and defining their width and height
+        A rect element can be used to draw, you guessed it, rectangles.
+        - create a rect element with a 'width' and a 'height' attribute of 300 (pixels)
+        - give the rect a color #294899 using the 'fill' attribute
+
+        A circle element's width and height is controlled by setting the radius of the circle with the r attribute. 
+        So the 'width' and 'height', in other words the diameter, will be 2 x r.
+          - create a circle element with a diameter of 300 (pixels) using the 'r' attribute.
+          - give it a white 'fill' color
+          - watch what happens in the browser and yell 'HUH', not to loud ;) (btw, is your circle 300 or 600 pixels in diameter?)
+      -->
+      <rect width="300" height="300" fill="#294899" x="50" y="50" stroke="#94a3cc" stroke-width="25"></rect>
+      <circle r="150" fill="white" cx="200" cy="200"></circle>
+
+      <!-- TODO: 3. positioning different elements on the grid
+        Positioning basically works by providing x and y coordinates that the element should start and sometimes end at.
+        x determines the position left to right where 0 is to the far left, and y determines the position from top to bottom where 0 is the absolute top.
+        Where the drawing of an element begins however, depends on the 'basic shape' you are using (rect, circle, line, etc.)
+        
+        Rects are drawn from the top left, so to calculate where the bottom right will be,
+        you need to add the x and y position to the width and height. 
+        For example, if you have a rect width 100 and height 200 and x=20 and y=40, 
+        the top left will be at position x 20 and y 40 and the bottom right will be at x 20 + 100 and y 40 + 200
+          - position the rect in the middle of the svg with the x and y attributes
+
+        To position a circle, the center of the circle is used. 
+        The cx (center x) attribute corresponds to the x position of the center of the circle and cy to y position.
+          - position the circle in the middle of the svg with cx and cy
+
+        Voila, we have a circle inside a square. Now lets add a line element to it.
+        The line element draws a straight line from point a to point b. The starting point a has an x and y position as does the ending point b.
+          - create a line element and define its starting point a with x1 and y1. Set the starting point at the vertical center and far left of the svg.
+          - define point b where the line should end with x2 and y2. Set the end of the line to the vertical center and far right of the svg, effectively drawing a straight line in the middle of our graphic.
+          - inspect the DOM and wonder why your line is not showing :)
+       -->
+      <!-- <line x1="0" x2="400" y1="200" y2="200" stroke="#294899" stroke-width="2"></line> -->
+
+      <!-- TODO: adding borders to our elements
+         Elements can be surrounded by borders like in html, with the 'stroke' attribute.
+         Stroke is more useful than for just adding a border, it is actually needed to draw lines and paths.
+         As we just saw, the line itself is not visible as it has no 'height'. We need to add a stroke to it, to make it show up.
+          - add a 'stroke' attribute to line element. The 'stroke' determines the color, use #294899
+          - add a 'stroke-width' attribute to the line element with which you can determine the size of the line (default 1). set it to 2.
+
+        Of course, we can also give our rectangle a border with the stroke attribute. 
+        A stroke will take up space of the rect (or any basic svg element) itself, just like box-sizing: border-box does in HTML/CSS.
+          - Add a 'border' to the rect with the 'stroke' and 'stroke-width' attributes. use the color #94a3cc and width 25 (pixels)
+         -->
+
+      <!-- TODO: play around with element order
+        Like the title already says, shuffle the order of rect, circle and line elements around a bit and see what happens. Put the line above the rect for example.
+        After you're done and you realized the order of the elements is important, put the elements back in their original order.
+      -->
+
+      <!-- TODO: 5. adding text to the equation 
+        Text element can also be positioned with the x and y attributes, colored with the 'fill' attribute and can even have a border with the 'stroke' attribute.
+        It can further manipulate the appearance of the text with attributes similar to those of HTML/CSS,
+        like font-size, font-style, font-weight and font-family.
+        Position the text with x and y determines the STARTING point (top left) of the text.
+        Positioning the text element in the center of the svg will not display the text exactly in the middle,
+        because the x and y position are used as STARTING point. 
+        The text can be aligned however, by setting the 'text-anchor' attribute to start, middle or end with a default of start.
+        Just like text-anchor alignes the text horizontal, the 'dominant-baseline' attribute alignes it vertical with auto, middle and hanging as its most used values.
+          - create a text element with the text 'BDC Academy'
+          - use the 'fill', 'font-style' and 'font-size' attributes to give the text a color #294899, make it bold and size 32
+          - position the text in the center of the svg with the x and y attributes (startingpoint)
+          - use the 'text-anchor' and 'dominant-baseline' attributes to align the text so it actually IS in the middle of the svg
+          - the line should go right through the middle of the text, play a bit with the values of 'text-anchor' and 'dominant-baseline' and center it again after you're done.
+        -->
+
+      <text y="200" x="200" font-size="32" fill="#294899" font-style="bold" text-anchor="middle"
+        dominant-baseline="middle">
+        BDCAcademy
+      </text>
+
+      <!-- TODO EXTRA: some extra fun with text
+        We will use a common pattern or trick combined with a more advanced concept
+        to have some extra fun with our text. This assigment is meant to make you familiar with the visual 'lies' 
+        you can create by placing different elements on top of eachother, so don't worry if you don't immediatly understand what is going on.
+        - add another circle element with the exact same properties as the first one, except use #294899 as fill.
+        - add another text element with exactly the same properties as the first one except a white fill.
+        - add the following code to the top of the svg:
+          <defs>
+        <clipPath id="cut-off-right">
+          <rect x="50" y="50" width="138" height="300" />
+        </clipPath>
+      </defs>
+        - give the new circle the attribute clip-path="url(#cut-off-right)"
+        - give the new text element the same attribute clip-path="url(#cut-off-right)"
+
+      HUH, what did we do here?
+      We added a circle that is over on the circle and text we already had, effectively covering them.
+      On top of that, we placed another text element with a different color.
+      Here comes the magical part: we added a so called 'clip-path' that is re-useable troughout the svg.
+      A clip path is used to 'slice' an element and only show the part that the clip path covers.
+      If you inspect the DOM and hover over the rect that is inside the defs -> clip-path element, you will the area that it covers.
+      So we sliced the new circle and text in half, revealing the other circle and text that lie beneath them.
+
+      To finish it of and make it really beautiful
+        - give both text elements the same 'stroke' (color) as the their text/fill
+        - remove the space in the text between BDC and Academy
+        - remove the line element
+
+       -->
+      <circle r="150" fill="#294899" cx="200" cy="200" clip-path="url(#cut-off-right)"></circle>
+      <text y="200" x="200" font-size="32" fill="white" font-style="bold" text-anchor="middle"
+        dominant-baseline="middle" clip-path="url(#cut-off-right)">
+        BDCAcademy
+      </text>
+
+      <!-- TODO EXTRA: some fun with zooming, a little bit on the viewBox attribute
+        svg is called scalable for a good reason. SVG maps it's relative sizing units (a.k.a. pixels) to the screen units. 
+        Default this would mean 1 svg pixel is 1 screen pixel, but screens are in control here.
+        As an example of this, open the two files located in the _assignment folder 'thisdoesnotscale.png' and 'thisdoesscale.svg' in chrome
+        and zoom in on both images. You will see the png getting blurry while the svg stays crisp. 
+        This is because the png literally maps to a screen pixel 1 on 1, but the svg lets the screen decide what a pixel is and scales accordingly.
+       
+        Besides zooming in on the whole graphic, we are also able to zoom in on a specific part of the svg using an attribute called viewBox.
+        The viewBox attribute consist of 4 parts: viewBox="x y width height". 
+        The default value is the top left and width/height of the svg. In our case the default is viewBox="0 0 400 400"
+        To zoom in say 2x, we can change the viewBox width/height to 200. 
+        If we keep x and y at 0 we will effectively zoom in on the top left of the svg.
+        If we want to zoom in on the center of the svg, we can use some math to calculate what x and y must be: 
+        take the original width/height minus the viewBox width/height and divide by 2 to get the viewBox x/y that centers our zoom.
+        So, to zoom in 2x on the center of our svg we have the viewBox="100 100 200 200"
+        Let's try and zoom in on our text by adding this to our svg.
+
+        Note: in my experience, it is a bit tricky to understand the workings of the viewBox attribute. 
+        Besides that it works in tandem with another attribute called preserveAspectRatio, which we will not go into further now.
+        To really get a graps of these attributes, you probably need to spend some late hours on it, getting more and more frustrated about it until the eurika moment occurs :)
+      -->
+    </svg>
+
+    <!-- 
+      tweede opdracht
+      - alle shapes bij langs en specifieke attributen behandelen
+    -->
+
+    <!--
+      derde opdracht
+      - polyline en path en text path
+      - tekening maken
+      - lijn grafiek?
+    -->
+
+    <!--
+      vierde opdracht grafiekje maken
+      - rects transformeren
+      - eventueel een gradientje toepassen
+    -->
+  </div>
+</body>
+
+</html>
