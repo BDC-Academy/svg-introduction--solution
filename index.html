@@ -18,6 +18,7 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root">
     <!-- TODO: 1. Start by defining a svg container element.
+    - Add an svg element inside the div#root
     - Add a 'version' 1.1 and a xml namespace 'xmlns' attribute to the svg element. 
     - Also, give it a width and height to make it a square of 400 by 400 (pixels)
     - Give the svg element a class 'my-graphic' and use the style.css to make it a block element and center in on screen with display: block; margin: 0 auto;
@@ -28,7 +29,7 @@
     Note3: Note: In the most basic case one pixel in an SVG document maps to one pixel on the output device (a.k.a. the screen). One user unit equals one screen unit.
   -->
 
-    <svg class="my-graphic" version="1.1" width="400" height="400" xmlns="http://www.w3.org/2000/SVG">
+    <svg class="my-graphic" version="1.1" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <clipPath id="cut-off-right">
           <rect x="50" y="50" width="138" height="300" />
@@ -66,22 +67,23 @@
 
         Voila, we have a circle inside a square. Now lets add a line element to it.
         The line element draws a straight line from point a to point b. The starting point a has an x and y position as does the ending point b.
-          - create a line element and define its starting point a with x1 and y1. Set the starting point at the vertical center and far left of the svg.
-          - define point b where the line should end with x2 and y2. Set the end of the line to the vertical center and far right of the svg, effectively drawing a straight line in the middle of our graphic.
+          - create a line element and define its starting point a with x1 and y1. Set the starting point atthe left side and vertical center of the square.
+          - define point b where the line should end with x2 and y2. Set the end of the line to the vertical center and right side of the square, effectively drawing a straight line in the middle of the square.
           - inspect the DOM and wonder why your line is not showing :)
        -->
-      <!-- <line x1="0" x2="400" y1="200" y2="200" stroke="#294899" stroke-width="2"></line> -->
+      <!-- <line x1="50" x2="350" y1="200" y2="200" stroke="#294899" stroke-width="2"></line> -->
 
       <!-- TODO: 4. adding borders to our elements
          Elements can be surrounded by borders like in html, with the 'stroke' attribute.
          Stroke is more useful than for just adding a border, it is actually needed to draw lines and paths.
          As we just saw, the line itself is not visible as it has no 'height'. We need to add a stroke to it, to make it show up.
-          - add a 'stroke' attribute to line element. The 'stroke' determines the color, use #294899
+          - add a 'stroke' attribute to the line element. The 'stroke' determines the color, use #294899
           - add a 'stroke-width' attribute to the line element with which you can determine the size of the line (default 1). set it to 2.
 
         Of course, we can also give our rectangle a border with the stroke attribute. 
-        A stroke will take up space of the rect (or any basic svg element) itself, just like box-sizing: border-box does in HTML/CSS.
+        Remember, a stroke will draw AROUND the border lines of a shape. Find out what that means for the rect:
           - Add a 'border' to the rect with the 'stroke' and 'stroke-width' attributes. use the color #94a3cc and width 25 (pixels)
+          - Compare the size of the square to the line which was the same length, what changed?
          -->
 
       <!-- TODO: 5. play around with element order
@@ -122,7 +124,7 @@
           <rect x="50" y="50" width="138" height="300" />
         </clipPath>
       </defs>
-        - give the new circle the attribute clip-path="url(#cut-off-right)"
+        - give the new circle a clip-path attribute clip-path="url(#cut-off-right)"
         - give the new text element the same attribute clip-path="url(#cut-off-right)"
 
       HUH, what did we do here?
@@ -134,7 +136,7 @@
       So we sliced the new circle and text in half, revealing the other circle and text that lie beneath them.
 
       To finish it of and make it really beautiful
-        - give both text elements the same 'stroke' (color) as the their text/fill
+        - give both text elements the same 'stroke' (color) as their text/fill
         - remove the space in the text between BDC and Academy
         - remove the line element
 
@@ -164,27 +166,9 @@
 
         Note: in my experience, it is a bit tricky to understand the workings of the viewBox attribute. 
         Besides that it works in tandem with another attribute called preserveAspectRatio, which we will not go into further now.
-        To really get a graps of these attributes, you probably need to spend some late hours on it, getting more and more frustrated about it until the eurika moment occurs :)
+        To really get a graps of these attributes, you probably need to spend some late hours on it, getting more and more frustrated about it until the eureka moment occurs :)
       -->
     </svg>
-
-    <!-- 
-      tweede opdracht
-      - alle shapes bij langs en specifieke attributen behandelen
-    -->
-
-    <!--
-      derde opdracht
-      - polyline en path en text path
-      - tekening maken
-      - lijn grafiek?
-    -->
-
-    <!--
-      vierde opdracht grafiekje maken
-      - rects transformeren
-      - eventueel een gradientje toepassen
-    -->
   </div>
 </body>
 
