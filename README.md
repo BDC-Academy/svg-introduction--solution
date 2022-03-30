@@ -51,7 +51,7 @@ For our introduction to SVG, we will look at the basic concepts of embedding a \
 
 ## Result
 
-After the assignment you will have used several basic svg elements, created a graphic with them and touched on the most important concepts of SVG.
+After the assignment you will have used and created a graphic(s) and touched on the most basic concepts of SVG. You will understand how SVG is used to draw predefined basic shapes.
 
 ## Libraries
 
