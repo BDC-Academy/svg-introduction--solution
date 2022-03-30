@@ -61,6 +61,9 @@ None, HTML natively supports SVG
 - _assigment/svg-grid.png
 - _assigment/thisdoesnotscale.png
 - _assigment/thisdoesscale.svg
+
+## Duration
+approx 30 minutes
 ## Links
 
 - [https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Introduction](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Introduction)
