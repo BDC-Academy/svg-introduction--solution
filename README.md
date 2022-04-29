@@ -63,7 +63,7 @@ None, HTML natively supports SVG
 - _assigment/thisdoesscale.svg
 
 ## Duration
-approx 30 minutes
+To be determined
 ## Links
 
 - [https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Introduction](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Introduction)
